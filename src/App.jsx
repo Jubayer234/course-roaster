@@ -39,7 +39,7 @@ function App() {
     <Header></Header>
     <div className='md:flex justify-center gap-10 mt-8'>
       <Data handleAddToCart={handleAddToCart}></Data>
-      <Cart cl cart={cart}
+      <Cart cart={cart}
       totalRemaining={totalRemaining}
       totalCredit={totalCredit}
       totalPrice={totalPrice}
