@@ -15,12 +15,20 @@ function App() {
 
     if(!isExist) {
       const newCart = [...cart,blog];
-      const sumCredit = newCart.reduce((a, b) => a + b.hour, 0)
+      const sumCredit = newCart.reduce((x, y) => x + y.hour, 0)
+      if (sumCredit > 20){
+        alert("You can't add more")
+      }else{
+        setTotalCredit(sumCredit)
+      }
       const remainingCredit = 20 - sumCredit;
-      const sumPrice = newCart.reduce((a, b )=> a + b.price, 0);
+      if (remainingCredit < 0){
+        alert("You have reached the limit");
+      } else{
+        setTotalRemaining(remainingCredit)
+      }
+      const sumPrice = newCart.reduce((x, y )=> x + y.price, 0);
       setCart(newCart)
-      setTotalCredit(sumCredit)
-      setTotalRemaining(remainingCredit)
       setTotalPrice(sumPrice)
 
     }
@@ -31,7 +39,7 @@ function App() {
     <Header></Header>
     <div className='md:flex justify-center gap-10 mt-8'>
       <Data handleAddToCart={handleAddToCart}></Data>
-      <Cart className cart={cart}
+      <Cart cl cart={cart}
       totalRemaining={totalRemaining}
       totalCredit={totalCredit}
       totalPrice={totalPrice}
